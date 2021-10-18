@@ -2,4 +2,6 @@
 <resources>
     <string name="in">IN</string>
     <string name="input">ВВОД</string>
+    <string name="calendar">Calendar</string>
+    <string name="settings">Settings</string>
 </resources>
