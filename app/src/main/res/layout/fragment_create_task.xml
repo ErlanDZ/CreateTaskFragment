@@ -23,6 +23,13 @@
         android:layout_height="@dimen/size200"/>
 
     <Button
+        android:id="@+id/btn_set_date"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/setDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
         android:id="@+id/btn_create_task_fragment"
         android:text="@string/in"
         android:layout_marginTop="@dimen/size16"
