@@ -13,18 +13,15 @@ import java.util.ArrayList;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
     ArrayList<TaskModel> list;
-    ItemTaskBinding binding;
 
-
-    public TaskAdapter(ArrayList<TaskModel> list){
+    public TaskAdapter(ArrayList<TaskModel> list) {
         this.list = list;
     }
 
     @NonNull
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        binding = ItemTaskBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new TaskViewHolder(binding);
+        return new TaskViewHolder(ItemTaskBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
@@ -44,11 +41,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             super(itemTaskBinding.getRoot());
             this.binding = itemTaskBinding;
         }
-        public void onFill(TaskModel model){
+
+        public void onFill(TaskModel model) {
             binding.txtTitle.setText(model.title);
-            binding.txtDate.setText(model.date);
+            binding.txtDate.setText(model.time);
             binding.viewColor.setBackgroundColor(model.color);
-            Glide.with(binding.imageItemTask).load(model.imageGallery).centerCrop().into(binding.imageItemTask);
+            Glide.with(binding.imageItemTask)
+                    .load(model.imageGallery)
+                    .centerCrop()
+                    .into(binding.imageItemTask);
         }
     }
 

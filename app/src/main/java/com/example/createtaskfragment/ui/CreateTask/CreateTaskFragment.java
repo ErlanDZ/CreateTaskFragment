@@ -18,25 +18,38 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.bumptech.glide.Glide;
 import com.example.createtaskfragment.R;
 import com.example.createtaskfragment.databinding.FragmentCreateTaskBinding;
 import com.example.createtaskfragment.utils.Constants;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 public class CreateTaskFragment extends Fragment {
 
-    Send send;
+    // Send send;
     Calendar date;
+    String title;
+    String userChoosedDate;
+    String image;
+    String time;
     private FragmentCreateTaskBinding binding;
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
                 @Override
                 public void onActivityResult(Uri uri) {
-                    binding.imageCreate.setImageURI(uri);
+                    image = uri.toString();
+                    Glide.with(binding.imageCreate)
+                            .load(image)
+                            .centerCrop()
+                            .into(binding.imageCreate);
                 }
             });
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,18 +68,22 @@ public class CreateTaskFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        binding.btnSetDate.setOnClickListener(v ->
+                showDateTimePicker());
+
+        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
         binding.btnCreateTaskFragment.setOnClickListener(v -> {
-            String title = binding.edCreateTaskFragment.getText().toString();
+            Log.e("tag", "click");
+            title = binding.edCreateTaskFragment.getText().toString();
+            TaskModel model = new TaskModel(R.color.purple_200, title, userChoosedDate + "/" + time, image);
             Bundle bundle = new Bundle();
-            if (getArguments() != null) {
-                bundle.putString(Constants.TITLE, title);
-                NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
-                navController.navigate(R.id.nav_home, bundle);
-                ArrayList<TaskModel> list = new ArrayList<>();
-                send.getList(list);
-            }
+            bundle.putSerializable(Constants.TITLE, model);
+            navController.navigate(R.id.nav_home_main, bundle);
+//                ArrayList<TaskModel> list = new ArrayList<>();
+//                send.getList(list);
         });
-        binding.btnSetDate.setOnClickListener(v -> showDateTimePicker());
+
     }
 
     public void showDateTimePicker() {
@@ -78,7 +95,14 @@ public class CreateTaskFragment extends Fragment {
             new TimePickerDialog(requireContext(), (view1, hourOfDay, minute) -> {
                 date.set(Calendar.HOUR_OF_DAY, hourOfDay);
                 date.set(Calendar.MINUTE, minute);
+
+                time = hourOfDay + " : " + minute;
+                userChoosedDate = date.get(Calendar.MONTH) + "." + date.get(Calendar.DAY_OF_MONTH);
+
                 Log.v("ololo", "The choosen one " + date.getTime());
+                binding.txtSetTimeCreateTask.setText(time);
+                binding.txtSetDateCreateTask.setText(userChoosedDate);
+
             }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), false).show();
         }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE)).show();
     }
@@ -90,7 +114,7 @@ public class CreateTaskFragment extends Fragment {
         binding = null;
     }
 
-    public interface Send {
-        void getList(ArrayList<TaskModel> list);
-    }
+//    public interface Send {
+//        void getList(ArrayList<TaskModel> list);
+//    }
 }
