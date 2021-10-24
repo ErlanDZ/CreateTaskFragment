@@ -2,12 +2,14 @@ package com.example.createtaskfragment.ui.CreateTask;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -24,6 +26,7 @@ import com.example.createtaskfragment.databinding.FragmentCreateTaskBinding;
 import com.example.createtaskfragment.utils.Constants;
 
 import java.util.Calendar;
+import java.util.Random;
 
 public class CreateTaskFragment extends Fragment {
 
@@ -33,6 +36,7 @@ public class CreateTaskFragment extends Fragment {
     String userChoosedDate;
     String image;
     String time;
+    int  myView;
     private FragmentCreateTaskBinding binding;
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
@@ -60,9 +64,11 @@ public class CreateTaskFragment extends Fragment {
         return root;
     }
 
+
     private void setUpImageView() {
         binding.imageCreate.setOnClickListener(v ->
                 mGetContent.launch("image/*"));
+
     }
 
     @Override
@@ -76,12 +82,11 @@ public class CreateTaskFragment extends Fragment {
         binding.btnCreateTaskFragment.setOnClickListener(v -> {
             Log.e("tag", "click");
             title = binding.edCreateTaskFragment.getText().toString();
-            TaskModel model = new TaskModel(R.color.purple_200, title, userChoosedDate + "/" + time, image);
+            TaskModel model = new TaskModel(R.layout.item_task, title, userChoosedDate + "/" + time, image);
             Bundle bundle = new Bundle();
             bundle.putSerializable(Constants.TITLE, model);
             navController.navigate(R.id.nav_home_main, bundle);
-//                ArrayList<TaskModel> list = new ArrayList<>();
-//                send.getList(list);
+
         });
 
     }

@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     NavController navController;
     private ActivityMainBinding binding;
+    AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +37,25 @@ public class MainActivity extends AppCompatActivity {
                 navController.navigate(R.id.createTaskFragment);
             }
         });
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
+         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home_main, R.id.nav_gallery, R.id.nav_slideshow)
                 .build();
         navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(binding.btnNavigation, navController);
+
+        hideButon();
+    }
+
+    private void hideButon() {
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            if (destination.getId() == R.id.createTaskFragment) {
+                binding.appBarMain.toolbar.setVisibility(View.GONE);
+                binding.appBarMain.fab.setVisibility(View.GONE);
+            } else {
+                binding.appBarMain.toolbar.setVisibility(View.VISIBLE);
+                binding.appBarMain.fab.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
