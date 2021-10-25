@@ -23,6 +23,7 @@ import androidx.navigation.Navigation;
 import com.bumptech.glide.Glide;
 import com.example.createtaskfragment.R;
 import com.example.createtaskfragment.databinding.FragmentCreateTaskBinding;
+import com.example.createtaskfragment.utils.App;
 import com.example.createtaskfragment.utils.Constants;
 
 import java.util.Calendar;
@@ -83,9 +84,10 @@ public class CreateTaskFragment extends Fragment {
             Log.e("tag", "click");
             title = binding.edCreateTaskFragment.getText().toString();
             TaskModel model = new TaskModel(R.layout.item_task, title, userChoosedDate + "/" + time, image);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable(Constants.TITLE, model);
-            navController.navigate(R.id.nav_home_main, bundle);
+            App.getInstance().dao().insert(model);
+//            Bundle bundle = new Bundle();
+//            bundle.putSerializable(Constants.TITLE, model);
+            navController.navigate(R.id.nav_home_main);
 
         });
 

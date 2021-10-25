@@ -12,13 +12,21 @@ import com.bumptech.glide.Glide;
 import com.example.createtaskfragment.databinding.ItemTaskBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
-    ArrayList<TaskModel> list;
+    ArrayList<TaskModel> list = new ArrayList<>();
 
-    public TaskAdapter(ArrayList<TaskModel> list) {
+    public void  addList(ArrayList<TaskModel> list) {
         this.list = list;
+        notifyDataSetChanged();
+    }
+
+
+    public void delete(int position){
+        list.remove(position);
+        notifyDataSetChanged();
     }
 
     @NonNull
