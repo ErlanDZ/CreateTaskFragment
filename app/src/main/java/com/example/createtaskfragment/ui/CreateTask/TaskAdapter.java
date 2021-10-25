@@ -3,6 +3,7 @@ package com.example.createtaskfragment.ui.CreateTask;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.createtaskfragment.databinding.ItemTaskBinding;
+import com.example.createtaskfragment.utils.OnClick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +19,15 @@ import java.util.Random;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
     ArrayList<TaskModel> list = new ArrayList<>();
+    OnClick onClick;
 
     public void  addList(ArrayList<TaskModel> list) {
         this.list = list;
         notifyDataSetChanged();
+    }
+
+    public void setOnClick(OnClick onClick) {
+        this.onClick = onClick;
     }
 
 
@@ -72,12 +79,22 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                     .load(model.imageGallery)
                     .centerCrop()
                     .into(binding.imageItemTask);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    onClick.click(model, getAdapterPosition());
+                    return false;
+                }
+            });
         }
         public void getRandomColor(){
             Random rnd = new Random();
             int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256),rnd.nextInt(256));
             binding.viewColor.setBackgroundColor(color);
         }
+
+
 
     }
 

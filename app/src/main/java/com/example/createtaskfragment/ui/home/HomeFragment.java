@@ -21,6 +21,7 @@ import com.example.createtaskfragment.databinding.FragmentHomeBinding;
 import com.example.createtaskfragment.ui.CreateTask.TaskAdapter;
 import com.example.createtaskfragment.ui.CreateTask.TaskModel;
 import com.example.createtaskfragment.utils.App;
+import com.example.createtaskfragment.utils.OnClick;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -48,15 +49,37 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        if (getArguments() != null) {
-//            model = (TaskModel) getArguments().getSerializable(Constants.TITLE);
-//            list.add(model);
-//            Log.e("anime", "HomeFragment  " + model.toString());
-//        }
         initRecyclerview();
         setUpObserve();
-        swipedDelete();
+        onLongDelete();
 
+    }
+
+    private void onLongDelete() {
+        adapter.setOnClick(new OnClick() {
+            @Override
+            public void click(TaskModel taskModel, int position) {
+                AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+                alertDialog.setTitle("ВНИМАНИЕ");
+                alertDialog.setMessage("ТОЧНО УДАЛИТЬ????");
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        App.getInstance().dao().delete(models.get(position));
+                        adapter.delete(position);
+                        Toast.makeText(getActivity(), "УДАЛЕНО", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alertDialog.show();
+            }
+        });
     }
 
     private void setUpObserve() {
@@ -73,38 +96,6 @@ public class HomeFragment extends Fragment {
 
     private void initRecyclerview() {
         binding.recyclerViewHomeFragment.setAdapter(adapter);
-    }
-
-    private void swipedDelete() {
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(@NonNull @NotNull RecyclerView recyclerView, @NonNull @NotNull RecyclerView.ViewHolder viewHolder, @NonNull @NotNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull @NotNull RecyclerView.ViewHolder viewHolder, int direction) {
-                AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
-                alertDialog.setTitle("ВНИМАНИЕ");
-                alertDialog.setMessage("ТОЧНО УДАЛИТЬ????");
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        adapter.notifyDataSetChanged();
-                    }
-                });
-
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        App.getInstance().dao().delete(models.get(viewHolder.getAdapterPosition()));
-                        adapter.delete(viewHolder.getAdapterPosition());
-                        Toast.makeText(getActivity(), "УДАЛЕНО", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                alertDialog.show();
-            }
-        }).attachToRecyclerView(binding.recyclerViewHomeFragment);
     }
 
     @Override
