@@ -2,8 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_ru"
+        android:title="@string/language"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:icon="@drawable/ru"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_en"
+        android:title="@string/languageEN"
+        android:orderInCategory="200"
+        android:icon="@drawable/en"
+        app:showAsAction="ifRoom" />
 </menu>

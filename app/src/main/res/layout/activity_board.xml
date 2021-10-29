@@ -38,10 +38,10 @@
 
         <ImageView
             android:id="@+id/image_arrow"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/size60"
+            android:layout_height="@dimen/size60"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/size20"
             android:background="@drawable/oval2"
             android:src="@drawable/ic_baseline_arrow_forward_24" />
 
@@ -51,13 +51,13 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@id/image_arrow"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="@dimen/size40"
                     app:dotsColor="@color/white"
                     app:dotsStrokeColor="@color/white1"
-                    app:dotsCornerRadius="8dp"
-                    app:dotsSize="16dp"
-                    app:dotsSpacing="4dp"
-                    app:dotsStrokeWidth="2dp"
+                    app:dotsCornerRadius="@dimen/size8"
+                    app:dotsSize="@dimen/size16"
+                    app:dotsSpacing="@dimen/size4"
+                    app:dotsStrokeWidth="@dimen/size2"
                     />
                 <TextView
                     android:id="@+id/txt_back"

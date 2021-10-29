@@ -8,4 +8,15 @@
     <dimen name="Size4">4dp</dimen>
     <dimen name="Size2">2dp</dimen>
     <dimen name="size90">90dp</dimen>
+    <dimen name="size60">60dp</dimen>
+    <dimen name="size20">20dp</dimen>
+    <dimen name="size40">40dp</dimen>
+    <dimen name="size8">8dp</dimen>
+    <dimen name="size16">16dp</dimen>
+    <dimen name="size4">4dp</dimen>
+    <dimen name="size2">2dp</dimen>
+    <dimen name="size70">70dp</dimen>
+    <dimen name="size250">250dp</dimen>
+    <dimen name="size6">6dp</dimen>
+    <dimen name="sp20">20sp</dimen>
 </resources>

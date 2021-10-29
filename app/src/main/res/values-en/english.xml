@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="in">ADD</string>
+    <string name="input">Enter</string>
+    <string name="title">Title</string>
+    <string name="setDate">CHOOSE DATE
+</string>
+    <string name="skip">Skip</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="calendar">Calendar</string>
+    <string name="settings">Settings</string>
+    <string name="boards">Boards</string>
+    <string name="title1">MANAGE YOUR TASK</string>
+    <string name="title1_1">Organaize all your to-do\'s in lists and calendar</string>
+    <string name="title2">Color teg them to set priorities and categories.</string>
+    <string name="title3">Set notification for tasks</string>
+</resources>

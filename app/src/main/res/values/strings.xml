@@ -12,14 +12,20 @@
     <string name="menu_slideshow">Slideshow</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="in">IN</string>
+    <string name="in">ДОБАВИТЬ</string>
     <string name="input">ВВОД</string>
-    <string name="boards">Boards</string>
-    <string name="calendar">Calendar</string>
-    <string name="settings">Settings</string>
-    <string name="title">TITLE</string>
+    <string name="boards">Главная</string>
+    <string name="calendar">Календарь</string>
+    <string name="settings">Настройки</string>
+    <string name="title">Озаглавие</string>
     <string name="setDate">ВЫБРАТЬ ДАТУ</string>
-    <string name="skip">SKIP</string>
-    <string name="back">BACK</string>
-    <string name="next">NEXT</string>
+    <string name="skip">Пропустить</string>
+    <string name="back">Назад</string>
+    <string name="next">Следующий</string>
+    <string name="language">язык</string>
+    <string name="languageEN">англ</string>
+    <string name="title1">УПРАВЛЯЙ СВОЕЙ ЗАДАЧЕЙ</string>
+    <string name="title1_1">Организуйте все свои дела в списках и календаре</string>
+    <string name="title2">Раскрасьте их, чтобы установить приоритеты и категории.</string>
+    <string name="title3">Установить уведомление о задачах</string>
 </resources>

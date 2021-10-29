@@ -87,6 +87,7 @@ public class CreateTaskFragment extends Fragment {
             App.getInstance().dao().insert(model);
 //            Bundle bundle = new Bundle();
 //            bundle.putSerializable(Constants.TITLE, model);
+            navController.navigateUp();
             navController.navigate(R.id.nav_home_main);
 
         });

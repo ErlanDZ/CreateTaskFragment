@@ -10,6 +10,7 @@
 
     <EditText
         android:id="@+id/ed_create_task_fragment"
+        android:layout_marginTop="@dimen/size60"
         android:hint="@string/input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

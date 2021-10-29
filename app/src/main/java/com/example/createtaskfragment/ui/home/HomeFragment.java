@@ -1,10 +1,13 @@
 package com.example.createtaskfragment.ui.home;
 
+import static android.os.Build.VERSION_CODES.R;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -35,6 +38,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private TaskAdapter adapter = new TaskAdapter();
     private FragmentHomeBinding binding;
+    public static boolean isChange = true;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,6 +58,9 @@ public class HomeFragment extends Fragment {
         onLongDelete();
 
     }
+
+
+
 
     private void onLongDelete() {
         adapter.setOnClick(new OnClick() {
@@ -101,7 +108,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -109,4 +115,5 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

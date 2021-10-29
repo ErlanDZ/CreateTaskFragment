@@ -37,19 +37,21 @@ public class BoardFragment extends Fragment {
             int position = getArguments().getInt(Constants.POSITION_FRAGMENT);
             switch (position){
                 case 0:
-                    binding.txtTitle.setText("MANAGE YOUR TASK");
-                    binding.txtDescription.setText("Organaize all your to-do's in lists and calendar");
-                    binding.imageOnBoard.setImageResource(R.drawable.co);
+                    binding.txtTitle.setText(R.string.title1);
+                    binding.txtDescription.setText(R.string.title1_1);
+                    binding.imageOnBoard.setAnimation("completing.tasks.json");
+
                     break;
                 case 1:
-                    binding.txtTitle.setText("Color teg them to set priorities and categories.");
-                    binding.imageOnBoard.setImageResource(R.drawable.content12);
+                    binding.txtTitle.setText(R.string.title2);
+                    binding.imageOnBoard.setAnimation("logo.animation.json");
                     break;
                 case 2:
-                    binding.txtTitle.setText("Set notification for tasks");
-                    binding.imageOnBoard.setImageResource(R.drawable.cont);
+                    binding.txtTitle.setText(R.string.title3);
+                    binding.imageOnBoard.setAnimation("to.do.list.animation.json");
                     break;
             }
         }
+
     }
 }

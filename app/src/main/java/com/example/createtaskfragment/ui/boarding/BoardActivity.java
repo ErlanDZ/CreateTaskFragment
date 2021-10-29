@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.animation.AnimatorInflater;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationSet;
 
 import com.example.createtaskfragment.MainActivity;
 import com.example.createtaskfragment.R;
@@ -51,6 +54,7 @@ public class BoardActivity extends AppCompatActivity {
                     sharedPreferences.edit().putBoolean(Constants.IS_SHOW, true).apply();
                     Intent intent = new Intent(BoardActivity.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -88,6 +92,7 @@ public class BoardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(BoardActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -95,5 +100,16 @@ public class BoardActivity extends AppCompatActivity {
     private void initViewPager() {
         binding.viewPagerBoard.setAdapter(new BoardAdapter(getSupportFragmentManager()));
         binding.wormDotsIndicator.setViewPager(binding.viewPagerBoard);
+        binding.txtBack.setAlpha(0f);
+        binding.txtBack.animate().alpha(1f).setDuration(1500);
+        binding.txtNext.setAlpha(0f);
+        binding.txtNext.animate().alpha(1f).setDuration(1500);
+        binding.btnSkipp.setAlpha(0f);
+        binding.btnSkipp.animate().alpha(1f).setDuration(1500);
+        binding.imageArrow.setAlpha(0f);
+        binding.imageArrow.animate().alpha(1f).setDuration(1500);
+        binding.imageArrow.animate().rotation(360).setDuration(1000);
+        binding.wormDotsIndicator.setAlpha(0f);
+        binding.wormDotsIndicator.animate().alpha(1f).setDuration(1500);
     }
 }
