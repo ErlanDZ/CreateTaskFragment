@@ -5,12 +5,6 @@
         android:id="@+id/action_ru"
         android:title="@string/language"
         android:orderInCategory="100"
-        android:icon="@drawable/ru"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_en"
-        android:title="@string/languageEN"
-        android:orderInCategory="200"
-        android:icon="@drawable/en"
-        app:showAsAction="ifRoom" />
+
 </menu>
