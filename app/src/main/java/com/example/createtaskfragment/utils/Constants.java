@@ -7,5 +7,6 @@ public class Constants {
     public static final String IS_SHOW = "is_show";
     public static final String SETTINGS = "Settings";
     public static final String  MY_LANG =" My_lang";
+    public static final String PHONE_FILE = "phone_file";
 
 }

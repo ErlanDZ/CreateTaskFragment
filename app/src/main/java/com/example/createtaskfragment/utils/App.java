@@ -19,6 +19,7 @@ public class App extends Application {
         instance = this;
         getInstance();
     }
+
     public static DataBase getInstance(){
         if (dataBase == null){
             dataBase = Room.databaseBuilder(instance.getApplicationContext(),DataBase.class, "todo" )

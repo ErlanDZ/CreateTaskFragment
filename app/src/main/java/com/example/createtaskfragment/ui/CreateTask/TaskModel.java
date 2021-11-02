@@ -19,11 +19,5 @@ public class TaskModel implements Serializable {
         this.title = title;
         this.time = time;
         this.imageGallery = imageGallery;
-
-
-
-
-
-
     }
 }

@@ -15,6 +15,7 @@ import android.view.animation.AnimationSet;
 
 import com.example.createtaskfragment.MainActivity;
 import com.example.createtaskfragment.R;
+import com.example.createtaskfragment.auth.PhoneAuthActivity;
 import com.example.createtaskfragment.databinding.ActivityBoardBinding;
 import com.example.createtaskfragment.utils.Constants;
 
@@ -52,7 +53,7 @@ public class BoardActivity extends AppCompatActivity {
                 if (binding.viewPagerBoard.getCurrentItem() == 2) {
                     SharedPreferences sharedPreferences = BoardActivity.this.getSharedPreferences(Constants.BOARD_FILE, Context.MODE_PRIVATE);
                     sharedPreferences.edit().putBoolean(Constants.IS_SHOW, true).apply();
-                    Intent intent = new Intent(BoardActivity.this, MainActivity.class);
+                    Intent intent = new Intent(BoardActivity.this, PhoneAuthActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -90,7 +91,7 @@ public class BoardActivity extends AppCompatActivity {
         binding.btnSkipp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BoardActivity.this, MainActivity.class);
+                Intent intent = new Intent(BoardActivity.this, PhoneAuthActivity.class);
                 startActivity(intent);
                 finish();
             }

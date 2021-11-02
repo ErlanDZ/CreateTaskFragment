@@ -28,4 +28,8 @@
     <string name="title1_1">Организуйте все свои дела в списках и календаре</string>
     <string name="title2">Раскрасьте их, чтобы установить приоритеты и категории.</string>
     <string name="title3">Установить уведомление о задачах</string>
+    <string name="sms">SMS код</string>
+    <string name="number">Номер</string>
+    <string name="confirm">Потвердить</string>
+    <string name="recevive">ПОЛУЧИТЬ СМС</string>
 </resources>

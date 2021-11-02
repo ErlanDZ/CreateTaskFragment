@@ -76,8 +76,9 @@ public class CreateTaskFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.btnSetDate.setOnClickListener(v ->
-                showDateTimePicker());
+        binding.btnSetDate.setOnClickListener(v -> {
+            showDateTimePicker();
+        });
 
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
         binding.btnCreateTaskFragment.setOnClickListener(v -> {
